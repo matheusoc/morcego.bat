@@ -1,11 +1,11 @@
 package controller;
 
-import view.MainFrame;
+import view.login.LoginFrame;
 
 public class Main {
 
 	public static void main(String[] args) {
-		new MainFrame();
+		new LoginFrame();
 
 	}
 

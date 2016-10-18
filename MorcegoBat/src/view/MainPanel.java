@@ -13,8 +13,9 @@ public class MainPanel extends JTabbedPane{
 	private ListarPanel listarPanel;
 	
 	public MainPanel(){
-		initialize();
+		
 		setVisible(true);
+		initialize();
 	}
 	
 	private void initialize(){
