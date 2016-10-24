@@ -27,6 +27,8 @@ public class ListarPanel extends JPanel{
 	private GridBagConstraints listConstraints;
 	private DefaultListModel<String> model;
 	
+	private JScrollPane listScroller; 
+	
 	public ListarPanel(){
 		initialize();
 	}
@@ -40,7 +42,7 @@ public class ListarPanel extends JPanel{
 	public void addComponent(){
 		add(getBuscarLabel(), getBuscarConstraints());
 		add(getNomeLabel(), getNomeConstraints());
-		add(getList(), getListConstraints());
+		add(getListScroller(), getListConstraints());
 		
 	}
 
@@ -95,18 +97,20 @@ public class ListarPanel extends JPanel{
 			list = new JList<>(getModel());
 			list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			list.setLayoutOrientation(JList.VERTICAL);
-			list.setVisibleRowCount(-1);
-			model.add(0, "item 1");
-			model.add(1, "item 2");
-			model.add(2, "item 3");
-			list.setPreferredSize(new Dimension(250, 400));
-			@SuppressWarnings("unused")
-			JScrollPane listScroller = new JScrollPane(list);
-			
+			list.setVisibleRowCount(-1);			
 		}
 		return list;
 	}
 
+	public JScrollPane getListScroller() {
+		if(listScroller == null) {
+			listScroller = new JScrollPane(getList());
+			listScroller.setPreferredSize(new Dimension(250, 450));
+		}
+		
+		return listScroller;
+	}
+	
 	public GridBagConstraints getListConstraints() {
 		if(listConstraints == null){
 			listConstraints = new GridBagConstraints();
@@ -117,7 +121,5 @@ public class ListarPanel extends JPanel{
 		}
 		return listConstraints;
 	}
-	
-	
 	
 }
