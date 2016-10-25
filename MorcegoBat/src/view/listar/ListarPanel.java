@@ -26,8 +26,10 @@ public class ListarPanel extends JPanel{
 	private JList<String> list;
 	private GridBagConstraints listConstraints;
 	private DefaultListModel<String> model;
-	
 	private JScrollPane listScroller; 
+	
+	private VilaoPanel vilaoPanel;
+	private GridBagConstraints vilaoGridBagConstraints;
 	
 	public ListarPanel(){
 		initialize();
@@ -43,7 +45,7 @@ public class ListarPanel extends JPanel{
 		add(getBuscarLabel(), getBuscarConstraints());
 		add(getNomeLabel(), getNomeConstraints());
 		add(getListScroller(), getListConstraints());
-		
+		add(getVilaoPanel(), getVilaoGridBagConstraints());
 	}
 
 	public JLabel getBuscarLabel() {
@@ -121,5 +123,27 @@ public class ListarPanel extends JPanel{
 		}
 		return listConstraints;
 	}
+
+	public VilaoPanel getVilaoPanel() {
+		if(vilaoPanel == null) {
+			vilaoPanel = new VilaoPanel();
+		}
+		return vilaoPanel;
+	}
+
+	public GridBagConstraints getVilaoGridBagConstraints() {
+		if(vilaoGridBagConstraints == null){
+			vilaoGridBagConstraints = new GridBagConstraints();
+			vilaoGridBagConstraints.gridx = 2;
+			vilaoGridBagConstraints.gridy = 0;
+			vilaoGridBagConstraints.gridheight = 2;
+			vilaoGridBagConstraints.insets = new Insets(2, 10, 2, 2);
+			vilaoGridBagConstraints.anchor = GridBagConstraints.CENTER;
+			vilaoGridBagConstraints.fill = GridBagConstraints.BOTH;
+		}
+		return vilaoGridBagConstraints;
+	}
+	
+	
 	
 }
