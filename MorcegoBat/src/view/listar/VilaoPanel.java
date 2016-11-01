@@ -72,6 +72,7 @@ public class VilaoPanel extends JPanel{
 	public VilaoPanel() {
 		setLayout(getGridLayout());
 		setBorder(getBorder());
+		
 		add(getNullLabel(), getNullConstraints());
 		add(getShowName(), getShowNameConstraints());
 		add(getInputApelido(), getApelidoConstraints());
