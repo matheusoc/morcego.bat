@@ -45,6 +45,30 @@ public class VilaoPanel extends JPanel{
 	private JLabel obs;
 	private GridBagConstraints obsConstraints;
 	
+	private JLabel vilainName;
+	private GridBagConstraints vilainConstraints;
+	
+	private JLabel nickName;
+	private GridBagConstraints nickConstraints;
+	
+	private JLabel modeAction;
+	private GridBagConstraints modeActionConstraints;
+	
+	private JLabel modeStatus;
+	private GridBagConstraints modeStatusConstraints;
+	
+	private JLabel modeCat;
+	private GridBagConstraints modeCatConstraints;
+	
+	private JLabel vilainAction;
+	private GridBagConstraints vilainActionConstraints;
+	
+	private JLabel vilainFisico;
+	private GridBagConstraints vilainFisicoConstraints;
+	
+	private JLabel vilainObs;
+	private GridBagConstraints VilainObsConstraints;
+	
 	public VilaoPanel() {
 		setLayout(getGridLayout());
 		setBorder(getBorder());
@@ -57,6 +81,15 @@ public class VilaoPanel extends JPanel{
 		add(getAction(), getActionConstraints());
 		add(getFisico(), getFisicoConstraints());
 		add(getObs(), getObsConstraints());
+		
+		add(getVilainName(), getVilainConstraints());
+		add(getNickName(), getNickConstraints());
+		add(getModeAction(), getModeActionConstraints());
+		add(getModeStatus(), getModeStatusConstraints());
+		add(getModeCat(), getModeCatConstraints());
+		add(getVilainAction(), getVilainActionConstraints());
+		add(getVilainFisico(), getVilainFisicoConstraints());
+		add(getVilainObs(), getVilainObsConstraints());
 		
 	}
 	
@@ -240,6 +273,150 @@ public class VilaoPanel extends JPanel{
 			obsConstraints.insets = new Insets(5, 5, 5, 5);
 		}
 		return obsConstraints;
+	}
+
+	public JLabel getVilainName() {
+		if(vilainName == null) {
+			vilainName = new JLabel("xxx");
+		}
+		return vilainName;
+	}
+
+	public GridBagConstraints getVilainConstraints() {
+		if(vilainConstraints == null) {
+			vilainConstraints = new GridBagConstraints();
+			vilainConstraints.gridx = 1;
+			vilainConstraints.gridy = 1;
+			vilainConstraints.anchor = GridBagConstraints.NORTHWEST;
+			vilainConstraints.insets = new Insets(5, 5, 5, 5);
+		}
+		return vilainConstraints;
+	}
+
+	public JLabel getNickName() {
+		if(nickName == null) {
+			nickName = new JLabel("xxx");
+		}
+		return nickName;
+	}
+
+	public GridBagConstraints getNickConstraints() {
+		if(nickConstraints == null) {
+			nickConstraints = new GridBagConstraints();
+			nickConstraints.gridx = 1;
+			nickConstraints.gridy = 2;
+			nickConstraints.anchor = GridBagConstraints.NORTHWEST;
+			nickConstraints.insets = new Insets(5, 5, 5, 5);
+		}
+		return nickConstraints;
+	}
+
+	public JLabel getModeAction() {
+		if(modeAction == null) {
+			modeAction = new JLabel("xxx");
+		}
+		return modeAction;
+	}
+
+	public GridBagConstraints getModeActionConstraints() {
+		if(modeActionConstraints == null) {
+			modeActionConstraints = new GridBagConstraints();
+			modeActionConstraints.gridx = 1;
+			modeActionConstraints.gridy = 3;
+			modeActionConstraints.anchor = GridBagConstraints.NORTHWEST;
+			modeActionConstraints.insets = new Insets(5, 5, 5, 5);
+		}
+		return modeActionConstraints;
+	}
+
+	public JLabel getModeStatus() {
+		if(modeStatus == null) {
+			modeStatus = new JLabel("xxx");
+		}
+		return modeStatus;
+	}
+
+	public GridBagConstraints getModeStatusConstraints() {
+		if(modeStatusConstraints == null) {
+			modeStatusConstraints = new GridBagConstraints();
+			modeStatusConstraints.gridx = 1;
+			modeStatusConstraints.gridy = 4;
+			modeStatusConstraints.anchor = GridBagConstraints.NORTHWEST;
+			modeStatusConstraints.insets = new Insets(5, 5, 5, 5);
+		}
+		return modeStatusConstraints;
+	}
+
+	public JLabel getModeCat() {
+		if(modeCat == null) {
+			modeCat = new JLabel("xxx");
+		}
+		return modeCat;
+	}
+
+	public GridBagConstraints getModeCatConstraints() {
+		if(modeCatConstraints == null) {
+			modeCatConstraints = new GridBagConstraints();
+			modeCatConstraints.gridx = 1;
+			modeCatConstraints.gridy = 5;
+			modeCatConstraints.anchor = GridBagConstraints.NORTHWEST;
+			modeCatConstraints.insets = new Insets(5, 5, 5, 5);
+		}
+		return modeCatConstraints;
+	}
+
+	public JLabel getVilainAction() {
+		if(vilainAction == null) {
+			vilainAction = new JLabel("xxx");
+		}
+		return vilainAction;
+	}
+
+	public GridBagConstraints getVilainActionConstraints() {
+		if(vilainActionConstraints == null) {
+			vilainActionConstraints = new GridBagConstraints();
+			vilainActionConstraints.gridx = 1;
+			vilainActionConstraints.gridy = 6;
+			vilainActionConstraints.anchor = GridBagConstraints.NORTHWEST;
+			vilainActionConstraints.insets = new Insets(5, 5, 5, 5);
+		}
+		return vilainActionConstraints;
+	}
+
+	public JLabel getVilainFisico() {
+		if(vilainFisico == null) {
+			vilainFisico = new JLabel("xxx");
+		}
+		return vilainFisico;
+	}
+
+	public GridBagConstraints getVilainFisicoConstraints() {
+		if(vilainFisicoConstraints == null) {
+			vilainFisicoConstraints = new GridBagConstraints();
+			vilainFisicoConstraints.gridx = 1;
+			vilainFisicoConstraints.gridy = 7;
+			vilainFisicoConstraints.anchor = GridBagConstraints.NORTHWEST;
+			vilainFisicoConstraints.insets = new Insets(5, 5, 5, 5);
+		}
+		return vilainFisicoConstraints;
+	}
+
+	public JLabel getVilainObs() {
+		if(vilainObs == null) {
+			vilainObs = new JLabel("xxx");
+		}
+		return vilainObs;
+	}
+
+	public GridBagConstraints getVilainObsConstraints() {
+		if(VilainObsConstraints == null) {
+			VilainObsConstraints = new GridBagConstraints();
+			VilainObsConstraints.gridx = 1;
+			VilainObsConstraints.gridy = 8;
+			VilainObsConstraints.anchor = GridBagConstraints.NORTHWEST;
+			VilainObsConstraints.insets = new Insets(5, 5, 5, 5);
+		}
+		return VilainObsConstraints;
 	}
 	
 	

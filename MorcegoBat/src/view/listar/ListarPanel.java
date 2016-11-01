@@ -13,6 +13,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 
+import view.components.FunctionsListener;
+import view.components.FunctionsPanel;
+
 public class ListarPanel extends JPanel{
 
 	private static final long serialVersionUID = 2596783305277684735L;
@@ -31,6 +34,9 @@ public class ListarPanel extends JPanel{
 	private VilaoPanel vilaoPanel;
 	private GridBagConstraints vilaoGridBagConstraints;
 	
+	private FunctionsPanel functionsPanel;
+	private GridBagConstraints functionsGridBagConstraints;
+	
 	public ListarPanel(){
 		initialize();
 	}
@@ -46,6 +52,7 @@ public class ListarPanel extends JPanel{
 		add(getNomeLabel(), getNomeConstraints());
 		add(getListScroller(), getListConstraints());
 		add(getVilaoPanel(), getVilaoGridBagConstraints());
+		add(getFunctionsPanel(), getFunctionsGridBagConstraints());
 	}
 
 	public JLabel getBuscarLabel() {
@@ -142,6 +149,38 @@ public class ListarPanel extends JPanel{
 			vilaoGridBagConstraints.fill = GridBagConstraints.BOTH;
 		}
 		return vilaoGridBagConstraints;
+	}
+
+	public FunctionsPanel getFunctionsPanel() {
+		if(functionsPanel == null) {
+			functionsPanel = new FunctionsPanel();
+			functionsPanel.addButtonsListener(new FunctionsListener() {
+				
+				@Override
+				public void editPerform() {
+					
+					
+				}
+				
+				@Override
+				public void deletePerform() {
+					
+					
+				}
+			});
+		}
+		return functionsPanel;
+	}
+
+	public GridBagConstraints getFunctionsGridBagConstraints() {
+		if(functionsGridBagConstraints == null) {
+			functionsGridBagConstraints = new GridBagConstraints();
+			functionsGridBagConstraints.gridx = 2;
+			functionsGridBagConstraints.gridy = 2;
+			functionsGridBagConstraints.insets = new Insets(2, 2, 2, 2);
+			functionsGridBagConstraints.anchor = GridBagConstraints.CENTER;
+		}
+		return functionsGridBagConstraints;
 	}
 	
 	
