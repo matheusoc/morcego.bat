@@ -159,7 +159,7 @@ public class ListarPanel extends JPanel{
 				@Override
 				public void editPerform() {
 					
-					
+					new RemoveFrame();
 				}
 				
 				@Override
