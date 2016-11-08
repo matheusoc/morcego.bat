@@ -2,6 +2,8 @@ package view;
 
 import javax.swing.JTabbedPane;
 
+import model.Administrador;
+import model.Usuario;
 import view.cadastro.CadastroPanel;
 import view.listar.ListarPanel;
 
@@ -12,15 +14,20 @@ public class MainPanel extends JTabbedPane{
 	private CadastroPanel cadastroPanel;
 	private ListarPanel listarPanel;
 	
-	public MainPanel(){
-		
+	private Usuario usuario;
+	
+	public MainPanel(Usuario usuario){
+		this.usuario = usuario;
 		setVisible(true);
 		initialize();
 	}
 	
 	private void initialize(){
 		addTab("Lista", getListarPanel());
-		addTab("Cadastro",  getCadastroPanel());
+		if(usuario instanceof Administrador) {
+			addTab("Cadastro",  getCadastroPanel());
+		}
+		
 	}
 
 	public CadastroPanel getCadastroPanel() {
@@ -32,7 +39,7 @@ public class MainPanel extends JTabbedPane{
 
 	public ListarPanel getListarPanel() {
 		if(listarPanel == null){
-			listarPanel = new ListarPanel();
+			listarPanel = new ListarPanel(usuario);
 		}
 		return listarPanel;
 	}

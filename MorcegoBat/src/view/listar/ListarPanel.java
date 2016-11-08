@@ -13,6 +13,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 
+import model.Administrador;
+import model.Usuario;
 import view.components.FunctionsListener;
 import view.components.FunctionsPanel;
 
@@ -36,8 +38,11 @@ public class ListarPanel extends JPanel{
 	
 	private FunctionsPanel functionsPanel;
 	private GridBagConstraints functionsGridBagConstraints;
+	 
+	private Usuario usuario;
 	
-	public ListarPanel(){
+	public ListarPanel(Usuario usuario){
+		this.usuario = usuario;
 		initialize();
 	}
 	
@@ -52,7 +57,10 @@ public class ListarPanel extends JPanel{
 		add(getNomeLabel(), getNomeConstraints());
 		add(getListScroller(), getListConstraints());
 		add(getVilaoPanel(), getVilaoGridBagConstraints());
-		add(getFunctionsPanel(), getFunctionsGridBagConstraints());
+		if(usuario instanceof Administrador) {
+			add(getFunctionsPanel(), getFunctionsGridBagConstraints());
+		}
+		
 	}
 
 	public JLabel getBuscarLabel() {
@@ -159,7 +167,7 @@ public class ListarPanel extends JPanel{
 				@Override
 				public void editPerform() {
 					
-					new RemoveFrame();
+					new EditFrame();
 				}
 				
 				@Override

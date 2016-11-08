@@ -47,6 +47,7 @@ public class UserPanel extends JPanel{
 				innerCompound);
 		return totalCompound;
 	}
+	
 	public void initialize() {
 		setLayout(getGridLayout());
 		setBorder(createBorder());
@@ -94,10 +95,10 @@ public class UserPanel extends JPanel{
 		return passLabel;
 	}
 	
-	public String getUser(){
-		String user = getUserText().getText();
-		String password = new String(getPassText().getPassword());
-		String a = user+";"+password;
+	public String[] getUser(){
+		String[] a = new String[2];
+		a[0] = getUserText().getText();
+		a[1] = new String(getPassText().getPassword());
 		return a;
 	}
 }

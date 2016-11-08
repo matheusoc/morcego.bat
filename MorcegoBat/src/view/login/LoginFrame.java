@@ -1,11 +1,12 @@
 package view.login;
 
 import java.awt.BorderLayout;
-import java.io.FileNotFoundException;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import controller.LoginControl;
+import model.Usuario;
 import view.MainFrame;
 import view.components.ButtonsListener;
 import view.components.ButtonsPanel;
@@ -50,11 +51,8 @@ public class LoginFrame extends JFrame {
 			
 			@Override
 			public void okPerform() {
-				try {
-					okClicked();
-				} catch(FileNotFoundException e) {
-					e.printStackTrace();
-				}
+				
+				okClicked();
 				
 			}
 			
@@ -67,10 +65,17 @@ public class LoginFrame extends JFrame {
 		return buttonsPanel;
 	}
 	
-	private void okClicked() throws FileNotFoundException {
-			new MainFrame();
+	private void okClicked() {
+		
+		String[] a = getUserLabel().getUser();
+		Usuario usuario = LoginControl.checkLogin(a[0], a[1]);
+		if(usuario != null) {
+			new MainFrame(usuario);
 			dispose();
-				
+		} else {
+			JOptionPane.showMessageDialog(null, "Senha incorreta!");
+		}
+			
 	}
 	
 	private void cancelCliked() {

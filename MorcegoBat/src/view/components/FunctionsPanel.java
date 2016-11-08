@@ -2,7 +2,6 @@ package view.components;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -27,7 +26,6 @@ public class FunctionsPanel extends JPanel{
 	public JButton getRemoveButton() {
 		if(removeButton == null) {
 			removeButton = new JButton("Remover");
-			removeButton.setMnemonic(KeyEvent.VK_ENTER);
 		}
 		removeButton.addActionListener(new ActionListener() {
 			

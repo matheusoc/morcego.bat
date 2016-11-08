@@ -9,7 +9,7 @@ import model.Usuario;
 
 public class SQLiteJDBC {
 	
-	public static ArrayList<Usuario> getUsursDB() {
+	public ArrayList<Usuario> getUsursDB() {
 	
 		Connection c = null;
 	    Statement stmt = null;
