@@ -7,6 +7,10 @@ public class Usuario {
 	private String senha;
 	
 	private String nome;
+	
+	public Usuario(){
+		
+	}
 
 	public String getLogin() {
 		return login;

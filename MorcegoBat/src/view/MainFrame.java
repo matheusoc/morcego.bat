@@ -1,19 +1,27 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
-import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.border.EmptyBorder;
 
 import model.Usuario;
+import view.login.LoginFrame;
 
 public class MainFrame extends JFrame {
 	
 	private static final long serialVersionUID = 8456560429229699542L;
 	
 	private Usuario usuario;
-	private JLabel userName;
+	
+	private JMenuBar bar;
+	private JMenu conta;
+	private JMenuItem exit;
 	
 	private MainPanel mainPanel;
 	
@@ -21,7 +29,7 @@ public class MainFrame extends JFrame {
 		this.usuario = usuario;
 		initialize();
 		add(getMainPanel(), BorderLayout.CENTER);
-		add(getUserName(), BorderLayout.NORTH);
+		setJMenuBar(getBar());
 	}
 	
 	public void initialize() {
@@ -41,11 +49,35 @@ public class MainFrame extends JFrame {
 		return mainPanel;
 	}
 
-	public JLabel getUserName() {
-		if(userName == null) {
-			userName = new JLabel("   " + usuario.getNome());
+	public JMenuBar getBar() {
+		if(bar == null) {
+			bar = new JMenuBar();
+			bar.add(getConta());
 		}
-		return userName;
+		return bar;
+	}
+
+	public JMenu getConta() {
+		if(conta == null) {
+			conta = new JMenu(usuario.getNome());
+			conta.add(getExit()); 
+		}
+		return conta;
+	}
+
+	public JMenuItem getExit() {
+		if(exit == null) {
+			exit = new JMenuItem("Sair");
+			exit.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					dispose();
+					new LoginFrame();
+				}
+			});
+		}
+		return exit;
 	}
 	
 	

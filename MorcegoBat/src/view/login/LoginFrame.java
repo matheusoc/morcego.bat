@@ -26,7 +26,7 @@ public class LoginFrame extends JFrame {
 		pack();
 		setResizable(false);
 		setLocationRelativeTo(null);
-
+		setTitle("Morcego.bat");
 
 	}
 	

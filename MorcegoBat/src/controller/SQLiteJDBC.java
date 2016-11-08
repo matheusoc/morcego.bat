@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import model.Administrador;
 import model.Comum;
 import model.Usuario;
+import model.Vilao;
 
 public class SQLiteJDBC {
 	
@@ -55,8 +56,33 @@ public class SQLiteJDBC {
 	    }
 	    System.out.println("Operation done successfully");
 	    return usuarios;
-  }
+	}
 	
+	public void saveVilao(Vilao vilao){
+		
+		Connection c = null;
+	    Statement stmt = null;
+	    try {
+	      Class.forName("org.sqlite.JDBC");
+	      c = DriverManager.getConnection("jdbc:sqlite:morcego.db");
+	      c.setAutoCommit(false);
+	      System.out.println("Opened database successfully");
 	
+	      stmt = c.createStatement();
+	      
+	      String sql = "INSERT INTO VILAO (NOME,APELIDO,CARACTERISTICA,"
+	      		+ "MODOACAO,STATUS,CATEGORIA,LOCALACAO,OBSERVACAO) " +
+	                   "VALUES ("+vilao.getNome()+","+vilao.getApelido()+
+	                   ","+vilao.getCaracteristicaFisica()+","+vilao.getModoAcao()+
+	                   ","+vilao.getStatus()+","+vilao.getCategoriaCriminal()+
+	                   ","+vilao.getLocalAcao()+","+vilao.getObservacao()+");"; 
+	      stmt.executeUpdate(sql);
+	      stmt.close();
+	      c.close();
+	    } catch(Exception e) {
+	    	
+	    }
+	    System.out.println("Records created successfully"); 
+	}
 
 }
