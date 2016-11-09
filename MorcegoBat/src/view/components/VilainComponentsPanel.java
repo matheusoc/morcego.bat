@@ -13,6 +13,8 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 
+import model.Vilao;
+
 public class VilainComponentsPanel extends JPanel{
 	
 	private static final long serialVersionUID = 2315253747172189494L;
@@ -313,6 +315,7 @@ public class VilainComponentsPanel extends JPanel{
 			Dimension d = writeModeAction.getPreferredSize();
 			d.width = 200;
 			writeModeAction.setPreferredSize(d);
+			writeModeAction.addItem("Outros");
 		}
 		return writeModeAction;
 	}
@@ -334,6 +337,9 @@ public class VilainComponentsPanel extends JPanel{
 			Dimension d = writeStatus.getPreferredSize();
 			d.width = 200;
 			writeStatus.setPreferredSize(d);
+			writeStatus.addItem("Solto");
+			writeStatus.addItem("Foragido");
+			writeStatus.addItem("Preso");
 		}
 		return writeStatus;
 	}
@@ -355,6 +361,10 @@ public class VilainComponentsPanel extends JPanel{
 			Dimension d = writeCat.getPreferredSize();
 			d.width = 200;
 			writeCat.setPreferredSize(d);
+			writeCat.addItem("Terrorista");
+			writeCat.addItem("Ladrão");
+			writeCat.addItem("Assasino");
+			writeCat.addItem("Traficante");
 		}
 		return writeCat;
 	}
@@ -426,5 +436,33 @@ public class VilainComponentsPanel extends JPanel{
 		return obsScrollPane;
 	}
 
+	public Vilao getVilain() {
+		Vilao vilao = null ;
+		vilao = new Vilao();
+		vilao.setNome(getWriteName().getText());
+		vilao.setApelido(getWriteNick().getText());
+		vilao.setCaracteristicaFisica(getWriteFisico().getText());
+		vilao.setCategoriaCriminal(getWriteCat().getSelectedItem().toString());
+		vilao.setModoAcao(getWriteModeAction().getSelectedItem().toString());
+		vilao.setLocalAcao(getWriteAction().getText());
+		vilao.setStatus(getWriteStatus().getSelectedItem().toString());
+		vilao.setObservacao(getWriteObs().getText());
+		
+		return vilao;
+	}
 	
+	public boolean checkEmpty(){
+		if(getWriteName().getText().equals("")){
+			return false;
+		} 
+		return true;
+	}
+	
+	public void setTextEmpty() {
+		getWriteName().setText("");
+		getWriteNick().setText("");
+		getWriteFisico().setText("");
+		getWriteAction().setText("");
+		getWriteObs().setText("");
+	}
 }

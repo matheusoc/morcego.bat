@@ -10,6 +10,10 @@ import model.Vilao;
 
 public class SQLiteJDBC {
 	
+	private static final String sql = "INSERT INTO VILAO " +
+			"(_id, NOME,APELIDO,CARACTERISTICA,MODOACAO,STATUS,CATEGORIA,LOCALACAO,OBSERVACAO) "
+            + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"; 
+	
 	public ArrayList<Usuario> getUsursDB() {
 	
 		Connection c = null;
@@ -58,31 +62,35 @@ public class SQLiteJDBC {
 	    return usuarios;
 	}
 	
-	public void saveVilao(Vilao vilao){
+	public boolean saveVilao(Vilao vilao){
 		
 		Connection c = null;
-	    Statement stmt = null;
+		PreparedStatement stmt = null;
 	    try {
 	      Class.forName("org.sqlite.JDBC");
 	      c = DriverManager.getConnection("jdbc:sqlite:morcego.db");
 	      c.setAutoCommit(false);
-	      System.out.println("Opened database successfully");
-	
-	      stmt = c.createStatement();
 	      
-	      String sql = "INSERT INTO VILAO (NOME,APELIDO,CARACTERISTICA,"
-	      		+ "MODOACAO,STATUS,CATEGORIA,LOCALACAO,OBSERVACAO) " +
-	                   "VALUES ("+vilao.getNome()+","+vilao.getApelido()+
-	                   ","+vilao.getCaracteristicaFisica()+","+vilao.getModoAcao()+
-	                   ","+vilao.getStatus()+","+vilao.getCategoriaCriminal()+
-	                   ","+vilao.getLocalAcao()+","+vilao.getObservacao()+");"; 
-	      stmt.executeUpdate(sql);
+	      stmt = c.prepareStatement(sql);
+	      
+	      stmt.setString(2, vilao.getNome());
+	      stmt.setString(3, vilao.getApelido());
+	      stmt.setString(4, vilao.getCaracteristicaFisica());
+	      stmt.setString(5, vilao.getModoAcao());
+	      stmt.setString(6, vilao.getStatus());
+	      stmt.setString(7, vilao.getCategoriaCriminal());
+	      stmt.setString(8, vilao.getLocalAcao());
+	      stmt.setString(9, vilao.getObservacao());
+	      
+	      stmt.executeUpdate();
+	      c.commit();
 	      stmt.close();
 	      c.close();
-	    } catch(Exception e) {
-	    	
+	      return true;
+	    } catch(SQLException | ClassNotFoundException e) {
+	    	e.printStackTrace();
 	    }
-	    System.out.println("Records created successfully"); 
+	    return false;
 	}
 
 }
