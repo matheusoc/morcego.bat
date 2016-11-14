@@ -7,15 +7,15 @@ public class SavePanel extends JPanel{
 
 	private static final long serialVersionUID = -4108685115202153261L;
 	
-	private JButton saveButton;
+	private SaveButton saveButton;
 	
 	public SavePanel(){
 		add(getSaveButton());
 	}
 	
-	protected JButton getSaveButton() {
+	public JButton getSaveButton() {
 		if(saveButton == null) {
-			saveButton = new JButton("Salvar");
+			saveButton = new SaveButton("Salvar");
 		}
 		return saveButton;
 	}

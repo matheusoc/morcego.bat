@@ -71,5 +71,10 @@ public class Vilao {
 		this.observacao = observacao;
 	}
 	
+	@Override
+	public String toString() {
+		String s = getNome();
+		return s;
+	}
 	
 }

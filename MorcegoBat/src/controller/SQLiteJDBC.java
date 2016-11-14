@@ -14,7 +14,7 @@ public class SQLiteJDBC {
 			"(_id, NOME,APELIDO,CARACTERISTICA,MODOACAO,STATUS,CATEGORIA,LOCALACAO,OBSERVACAO) "
             + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"; 
 	
-	public ArrayList<Usuario> getUsursDB() {
+	public static ArrayList<Usuario> getUsursDB() {
 	
 		Connection c = null;
 	    Statement stmt = null;
@@ -62,7 +62,7 @@ public class SQLiteJDBC {
 	    return usuarios;
 	}
 	
-	public boolean saveVilao(Vilao vilao){
+	public static boolean saveVilao(Vilao vilao){
 		
 		Connection c = null;
 		PreparedStatement stmt = null;
@@ -91,6 +91,77 @@ public class SQLiteJDBC {
 	    	e.printStackTrace();
 	    }
 	    return false;
+	}
+	
+	public static ArrayList<Vilao> getVilaosDB() {
+		
+		Connection c = null;
+	    Statement stmt = null;
+	    ArrayList<Vilao> vilaos = null;
+	    try {
+	      Class.forName("org.sqlite.JDBC");
+	      c = DriverManager.getConnection("jdbc:sqlite:morcego.db");
+	      c.setAutoCommit(false);
+	      System.out.println("Opened database successfully");
+	
+	      stmt = c.createStatement();
+	      c.commit();
+	      
+	      ResultSet rs = stmt.executeQuery( "SELECT * FROM VILAO;" );
+	      vilaos = new ArrayList<>();
+	      while ( rs.next() ) {
+	    	  
+	    	 Vilao vilao = new Vilao();
+	    	  
+	         vilao.setId(rs.getInt("_id"));
+	         vilao.setNome(rs.getString("NOME"));
+	         vilao.setApelido(rs.getString("APELIDO")); 
+	         vilao.setCaracteristicaFisica(rs.getString("CARACTERISTICA"));
+	         vilao.setModoAcao(rs.getString("MODOACAO"));
+	         vilao.setStatus(rs.getString("STATUS"));
+	         vilao.setCategoriaCriminal(rs.getString("CATEGORIA"));
+	         vilao.setLocalAcao(rs.getString("LOCALACAO"));
+	         vilao.setObservacao(rs.getString("OBSERVACAO"));
+	         
+	         vilaos.add(vilao);
+	      }
+	      rs.close();
+	      stmt.close();
+	      c.close();
+	    } catch ( Exception e ) {
+	      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	      System.exit(0);
+	    }
+	    System.out.println("Operation done successfully");
+	    return vilaos;
+	}
+	
+	public static void deleteVilain(String name){
+		Connection c = null;
+		PreparedStatement stmt = null;
+	    try {
+		    Class.forName("org.sqlite.JDBC");
+		    c = DriverManager.getConnection("jdbc:sqlite:morcego.db");
+		    c.setAutoCommit(false);
+		    System.out.println("Opened database successfully");
+		  
+		    String sql = "DELETE from VILAO where NOME = ?;";
+		    stmt = c.prepareStatement(sql);
+		    
+		    stmt.setString(1, name);
+		    
+		    stmt.executeUpdate();
+		    c.commit();
+	    }catch ( Exception e ) {
+		    System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+		    System.exit(0);
+	    }
+	    System.out.println("Operation done successfully");
+	}
+	
+	public static void editVilain(Vilao vilao1, Vilao vilao2){
+		deleteVilain(vilao1.getNome());
+		saveVilao(vilao2);
 	}
 
 }

@@ -3,11 +3,14 @@ package view.listar;
 import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
+import model.Usuario;
+import model.Vilao;
 import view.components.ButtonsListener;
 import view.components.ButtonsPanel;
 import view.components.VilainComponentsPanel;
@@ -18,8 +21,15 @@ public class EditFrame extends JFrame{
 	
 	private VilainComponentsPanel componentsPanel;
 	private ButtonsPanel buttonsPanel;
+	
+	private Vilao vilao;
+	
+	private Usuario usuario;
 
-	public EditFrame(){
+	public EditFrame(Vilao vilao, Usuario usuario){
+		
+		this.vilao = vilao;
+		this.usuario = usuario;
 		
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setVisible(true);
@@ -52,7 +62,7 @@ public class EditFrame extends JFrame{
 
 	protected VilainComponentsPanel getComponentsPanel() {
 		if(componentsPanel == null) {
-			componentsPanel = new VilainComponentsPanel();
+			componentsPanel = new VilainComponentsPanel(vilao);
 			componentsPanel.setBorder(createBorder());
 		}
 		return componentsPanel;
@@ -65,7 +75,9 @@ public class EditFrame extends JFrame{
 				
 				@Override
 				public void okPerform() {
-					
+					usuario.edit(vilao, getComponentsPanel().getVilain());
+					JOptionPane.showMessageDialog(null, "Vilão editado com sucesso!");
+					dispose();
 				}
 				
 				@Override

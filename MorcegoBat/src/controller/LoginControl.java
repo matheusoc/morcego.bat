@@ -8,8 +8,7 @@ public abstract class LoginControl {
 	
 	 public static Usuario checkLogin(String login, String password){
 		 
-		 SQLiteJDBC sql = new SQLiteJDBC();
-		 ArrayList<Usuario> users = sql.getUsursDB();
+		 ArrayList<Usuario> users = SQLiteJDBC.getUsursDB();
 		 
 		 for(Usuario user : users) {
 			 if(user.getLogin().equals(login) && 

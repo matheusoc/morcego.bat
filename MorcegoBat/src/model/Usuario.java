@@ -1,5 +1,8 @@
 package model;
 
+import controller.CadastroControl;
+import controller.SQLiteJDBC;
+
 public class Usuario {
 	
 	private String login;
@@ -34,6 +37,18 @@ public class Usuario {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	
+	public void cadastrar(Vilao vilao){
+		CadastroControl.cadastrarVilao(vilao);
+	}
+	
+	public void edit(Vilao vilao1, Vilao vilao2){
+		SQLiteJDBC.editVilain(vilao1, vilao2);
+	}
+	
+	public void delete(String name){
+		SQLiteJDBC.deleteVilain(name);
 	}
 	
 	@Override

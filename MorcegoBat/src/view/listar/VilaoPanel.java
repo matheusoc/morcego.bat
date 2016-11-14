@@ -12,6 +12,8 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
+import model.Vilao;
+
 public class VilaoPanel extends JPanel{
 
 	private static final long serialVersionUID = 4765246606933577684L;
@@ -278,7 +280,7 @@ public class VilaoPanel extends JPanel{
 
 	public JLabel getVilainName() {
 		if(vilainName == null) {
-			vilainName = new JLabel("xxx");
+			vilainName = new JLabel("");
 		}
 		return vilainName;
 	}
@@ -296,7 +298,7 @@ public class VilaoPanel extends JPanel{
 
 	public JLabel getNickName() {
 		if(nickName == null) {
-			nickName = new JLabel("xxx");
+			nickName = new JLabel("");
 		}
 		return nickName;
 	}
@@ -314,7 +316,7 @@ public class VilaoPanel extends JPanel{
 
 	public JLabel getModeAction() {
 		if(modeAction == null) {
-			modeAction = new JLabel("xxx");
+			modeAction = new JLabel("");
 		}
 		return modeAction;
 	}
@@ -332,7 +334,7 @@ public class VilaoPanel extends JPanel{
 
 	public JLabel getModeStatus() {
 		if(modeStatus == null) {
-			modeStatus = new JLabel("xxx");
+			modeStatus = new JLabel("");
 		}
 		return modeStatus;
 	}
@@ -350,7 +352,7 @@ public class VilaoPanel extends JPanel{
 
 	public JLabel getModeCat() {
 		if(modeCat == null) {
-			modeCat = new JLabel("xxx");
+			modeCat = new JLabel("");
 		}
 		return modeCat;
 	}
@@ -368,7 +370,7 @@ public class VilaoPanel extends JPanel{
 
 	public JLabel getVilainAction() {
 		if(vilainAction == null) {
-			vilainAction = new JLabel("xxx");
+			vilainAction = new JLabel();
 		}
 		return vilainAction;
 	}
@@ -386,7 +388,7 @@ public class VilaoPanel extends JPanel{
 
 	public JLabel getVilainFisico() {
 		if(vilainFisico == null) {
-			vilainFisico = new JLabel("xxx");
+			vilainFisico = new JLabel();
 		}
 		return vilainFisico;
 	}
@@ -404,7 +406,7 @@ public class VilaoPanel extends JPanel{
 
 	public JLabel getVilainObs() {
 		if(vilainObs == null) {
-			vilainObs = new JLabel("xxx");
+			vilainObs = new JLabel();
 		}
 		return vilainObs;
 	}
@@ -420,7 +422,26 @@ public class VilaoPanel extends JPanel{
 		return VilainObsConstraints;
 	}
 	
+	public void setTexts(Vilao vilao){
+		getVilainName().setText(vilao.getNome());
+		getNickName().setText(vilao.getApelido());
+		getModeAction().setText(vilao.getModoAcao());
+		getModeStatus().setText(vilao.getStatus());
+		getModeCat().setText(vilao.getCategoriaCriminal());
+		getVilainAction().setText(vilao.getLocalAcao());
+		getVilainFisico().setText(vilao.getCaracteristicaFisica());
+		getVilainObs().setText(vilao.getObservacao());
+	}
 	
-	
+	public void setTextsEmpty(){
+		getVilainName().setText("");
+		getNickName().setText("");
+		getModeAction().setText("");
+		getModeStatus().setText("");
+		getModeCat().setText("");
+		getVilainAction().setText("");
+		getVilainFisico().setText("");
+		getVilainObs().setText("");
+	}
 	
 }

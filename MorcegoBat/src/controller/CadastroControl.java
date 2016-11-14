@@ -6,8 +6,7 @@ public abstract class CadastroControl {
 	
 	public static boolean cadastrarVilao(Vilao vilao) {
 		
-		SQLiteJDBC sqLiteJDBC = new SQLiteJDBC();
-		boolean state = sqLiteJDBC.saveVilao(vilao);
+		boolean state = SQLiteJDBC.saveVilao(vilao);
 		return state;
 		
 	}

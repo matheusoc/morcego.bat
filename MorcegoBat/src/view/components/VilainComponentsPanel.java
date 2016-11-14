@@ -70,8 +70,16 @@ public class VilainComponentsPanel extends JPanel{
 	private JScrollPane fisicoScrollPane;
 	private JScrollPane obsScrollPane;
 	
+	private Vilao vilao;
+	
 	public VilainComponentsPanel() {
 		initialize();
+	}
+	
+	public VilainComponentsPanel(Vilao vilao) {
+		this.vilao = vilao;
+		initialize();
+		loadVilao();
 	}
  
 	private void initialize(){
@@ -252,6 +260,9 @@ public class VilainComponentsPanel extends JPanel{
 			Dimension d = writeName.getPreferredSize();
 			d.width = 200;
 			writeName.setPreferredSize(d);
+			if(vilao != null) {
+				writeName.setEditable(false);
+			}
 		}
 		return writeName;
 	}
@@ -308,7 +319,7 @@ public class VilainComponentsPanel extends JPanel{
 		}
 		return writeActionConstraints;
 	}
-
+    
 	public JComboBox<String> getWriteModeAction() {
 		if(writeModeAction == null) {
 			writeModeAction = new JComboBox<>();
@@ -324,7 +335,7 @@ public class VilainComponentsPanel extends JPanel{
 		if(writeModeActionConstraints == null) {
 			writeModeActionConstraints = new GridBagConstraints();
 			writeModeActionConstraints.gridx = 1;
-			writeModeActionConstraints.gridy = 3;
+			writeModeActionConstraints.gridy = 5;
 			writeModeActionConstraints.anchor = GridBagConstraints.NORTHWEST;
 			writeModeActionConstraints.insets = new Insets(5, 5, 5, 5);
 		}
@@ -348,7 +359,7 @@ public class VilainComponentsPanel extends JPanel{
 		if(writeStatusConstraints == null) {
 			writeStatusConstraints = new GridBagConstraints();
 			writeStatusConstraints.gridx = 1;
-			writeStatusConstraints.gridy = 4;
+			writeStatusConstraints.gridy = 3;
 			writeStatusConstraints.anchor = GridBagConstraints.NORTHWEST;
 			writeStatusConstraints.insets = new Insets(5, 5, 5, 5);
 		}
@@ -373,7 +384,7 @@ public class VilainComponentsPanel extends JPanel{
 		if(writeCatContraints == null) {
 			writeCatContraints = new GridBagConstraints();
 			writeCatContraints.gridx = 1;
-			writeCatContraints.gridy = 5;
+			writeCatContraints.gridy = 4;
 			writeCatContraints.anchor = GridBagConstraints.NORTHWEST;
 			writeCatContraints.insets = new Insets(5, 5, 5, 5);
 		}
@@ -449,6 +460,17 @@ public class VilainComponentsPanel extends JPanel{
 		vilao.setObservacao(getWriteObs().getText());
 		
 		return vilao;
+	}
+	
+	private void loadVilao(){
+		getWriteName().setText(vilao.getNome());
+		getWriteNick().setText(vilao.getApelido());
+		getWriteFisico().setText(vilao.getCaracteristicaFisica());
+		getWriteCat().setSelectedItem(vilao.getCategoriaCriminal());
+		getWriteModeAction().setSelectedItem(vilao.getModoAcao());
+		getWriteAction().setText(vilao.getLocalAcao());
+		getWriteStatus().setSelectedItem(vilao.getStatus());
+		getWriteObs().setText(vilao.getObservacao());
 	}
 	
 	public boolean checkEmpty(){

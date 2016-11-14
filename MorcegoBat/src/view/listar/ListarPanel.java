@@ -4,6 +4,9 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
@@ -13,8 +16,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 
+import controller.SQLiteJDBC;
 import model.Administrador;
 import model.Usuario;
+import model.Vilao;
 import view.components.FunctionsListener;
 import view.components.FunctionsPanel;
 
@@ -28,7 +33,7 @@ public class ListarPanel extends JPanel{
 	private JTextField nomeLabel;
 	private GridBagConstraints nomeConstraints;
 	
-	private JList<String> list;
+	private Lista list;
 	private GridBagConstraints listConstraints;
 	private DefaultListModel<String> model;
 	private JScrollPane listScroller; 
@@ -105,16 +110,21 @@ public class ListarPanel extends JPanel{
 	public DefaultListModel<String> getModel(){
 		if(model == null) {
 			model = new DefaultListModel<>();
+			ArrayList<Vilao> vilaos =  SQLiteJDBC.getVilaosDB();
+			for(Vilao vilao : vilaos){
+				model.addElement(vilao.toString());
+			}
 		}
 		return model;
 	}
 	
 	public JList<String> getList() {
 		if(list == null){
-			list = new JList<>(getModel());
+			list = new Lista(getModel());
 			list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			list.setLayoutOrientation(JList.VERTICAL);
-			list.setVisibleRowCount(-1);			
+			list.setVisibleRowCount(-1);		
+			list.addMouseListener(addMouseAction());
 		}
 		return list;
 	}
@@ -167,13 +177,16 @@ public class ListarPanel extends JPanel{
 				@Override
 				public void editPerform() {
 					
-					new EditFrame();
+					if(!getList().isSelectionEmpty()){
+						new EditFrame(getVilao(), usuario);
+						getVilaoPanel().setTextsEmpty();
+					}
 				}
 				
 				@Override
 				public void deletePerform() {
 					
-					
+					deleteElement();
 				}
 			});
 		}
@@ -191,6 +204,45 @@ public class ListarPanel extends JPanel{
 		return functionsGridBagConstraints;
 	}
 	
+	public void atualizaTabela(Vilao vilao){
+		getModel().addElement(vilao.toString());
+	}
 	
+	public void deleteElement(){
+		if(!getList().isSelectionEmpty()){
+			String toDelete = getList().getSelectedValue();
+			usuario.delete(toDelete);
+			getModel().removeElementAt(getList().getSelectedIndex());
+			getVilaoPanel().setTextsEmpty();
+		}
+	}
+	
+	private MouseAdapter addMouseAction() {
+		return new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				super.mouseClicked(e);
+				if(e.getClickCount() == 2){
+					showVilao();
+				}
+			}
+		};
+	}
+	
+	
+	private void showVilao(){
+		getVilaoPanel().setTexts(getVilao());
+	}
+	
+	private Vilao getVilao(){
+		String name = getList().getSelectedValue();
+		ArrayList<Vilao> vilaos =  SQLiteJDBC.getVilaosDB();
+		for(Vilao vilao : vilaos){
+			if(vilao.getNome().equals(name)){
+				return vilao;
+			}
+		}
+		return null;
+	}
 	
 }
