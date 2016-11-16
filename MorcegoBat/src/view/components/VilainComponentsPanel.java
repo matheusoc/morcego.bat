@@ -326,6 +326,12 @@ public class VilainComponentsPanel extends JPanel{
 			Dimension d = writeModeAction.getPreferredSize();
 			d.width = 200;
 			writeModeAction.setPreferredSize(d);
+			writeModeAction.addItem("Esfaqueador");
+			writeModeAction.addItem("Estrangulador");
+			writeModeAction.addItem("Envenenador");
+			writeModeAction.addItem("Aptidão com Explosivos");
+			writeModeAction.addItem("Manipulador");
+			writeModeAction.addItem("Torturador");
 			writeModeAction.addItem("Outros");
 		}
 		return writeModeAction;

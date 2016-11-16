@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
@@ -41,7 +42,7 @@ public class MainFrame extends JFrame {
 		setJMenuBar(getBar());
 		setIconImage(getIcon());
 		
-
+		setBackground(Color.black);
 	}
 	
 	public void initialize() {
