@@ -1,9 +1,12 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -30,6 +33,7 @@ public class MainFrame extends JFrame {
 		initialize();
 		add(getMainPanel(), BorderLayout.CENTER);
 		setJMenuBar(getBar());
+		setIconImage(getIcon());
 	}
 	
 	public void initialize() {
@@ -80,6 +84,10 @@ public class MainFrame extends JFrame {
 		return exit;
 	}
 	
-	
+	private Image getIcon(){
+		URL iconURL = getClass().getResource("/images/batman.png");
+		ImageIcon image = new ImageIcon(iconURL);
+		return image.getImage();
+	}
 
 }

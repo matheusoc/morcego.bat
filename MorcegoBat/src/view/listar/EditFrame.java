@@ -1,7 +1,10 @@
 package view.listar;
 
 import java.awt.BorderLayout;
+import java.awt.Image;
+import java.net.URL;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.border.Border;
@@ -41,6 +44,7 @@ public class EditFrame extends JFrame{
 		setLocationRelativeTo(null);
 		
 		setTitle("Morcego.bat");
+		setIconImage(getIcon());
 		
 	}
 
@@ -89,6 +93,10 @@ public class EditFrame extends JFrame{
 		return buttonsPanel;
 	}
 	
-	
+	private Image getIcon(){
+		URL iconURL = getClass().getResource("/images/batman.png");
+		ImageIcon image = new ImageIcon(iconURL);
+		return image.getImage();
+	}
 	
 }

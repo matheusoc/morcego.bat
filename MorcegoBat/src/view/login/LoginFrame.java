@@ -1,7 +1,10 @@
 package view.login;
 
 import java.awt.BorderLayout;
+import java.awt.Image;
+import java.net.URL;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -27,6 +30,7 @@ public class LoginFrame extends JFrame {
 		setResizable(false);
 		setLocationRelativeTo(null);
 		setTitle("Morcego.bat");
+		setIconImage(getIcon());
 
 	}
 	
@@ -85,5 +89,11 @@ public class LoginFrame extends JFrame {
 			dispose();
 			System.exit(0);
 		}
+	}
+	
+	private Image getIcon(){
+		URL iconURL = getClass().getResource("/images/batman.png");
+		ImageIcon image = new ImageIcon(iconURL);
+		return image.getImage();
 	}
 }
