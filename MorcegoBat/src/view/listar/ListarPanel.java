@@ -15,8 +15,11 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import controller.SQLiteJDBC;
+import controller.SearchControl;
 import model.Administrador;
 import model.Usuario;
 import model.Vilao;
@@ -92,6 +95,7 @@ public class ListarPanel extends JPanel{
 			Dimension d = nomeLabel.getPreferredSize();
 			d.width = 250;
 			nomeLabel.setPreferredSize(d);
+			nomeLabel.getDocument().addDocumentListener(documentListener());
 		}
 		return nomeLabel;
 	}
@@ -243,6 +247,34 @@ public class ListarPanel extends JPanel{
 			}
 		}
 		return null;
+	}
+	
+	private DocumentListener documentListener(){
+		return new DocumentListener() {
+			
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				setSeachModel();
+			}
+			
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				setSeachModel();
+			}
+			
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				setSeachModel();
+			}
+		};
+	}
+	
+	private void setSeachModel(){
+		ArrayList<Vilao> vilains = SearchControl.searchEntry(getNomeLabel().getText(), SQLiteJDBC.getVilaosDB());
+		getModel().clear();
+		for(Vilao vilao : vilains){
+			getModel().addElement(vilao.toString());
+		}
 	}
 	
 }
