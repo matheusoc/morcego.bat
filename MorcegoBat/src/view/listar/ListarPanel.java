@@ -136,7 +136,7 @@ public class ListarPanel extends JPanel{
 	public JScrollPane getListScroller() {
 		if(listScroller == null) {
 			listScroller = new JScrollPane(getList());
-			listScroller.setPreferredSize(new Dimension(250, 450));
+			listScroller.setPreferredSize(new Dimension(250, 400));
 		}
 		
 		return listScroller;
